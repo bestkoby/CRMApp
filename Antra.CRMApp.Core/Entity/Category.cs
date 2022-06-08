@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 namespace Antra.CRMApp.Core.Entity
 {
-    public class Shipper
+    public class Category
     {
         public int Id { get; set; }
 
@@ -15,8 +15,8 @@ namespace Antra.CRMApp.Core.Entity
         [Column(TypeName = "varchar(50)")]
         public string Name { get; set; }
 
-        [Required(ErrorMessage = "Phone is required")]
+        [Required(ErrorMessage = "Description is required")]
         [Column(TypeName = "varchar(50)")]
-        public string Phone { get; set; }
+        public string Description { get; set; }
     }
 }

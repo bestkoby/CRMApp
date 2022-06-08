@@ -7,31 +7,21 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 namespace Antra.CRMApp.Core.Entity
 {
-    public class Employee
+    public class Supplier
     {
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "FirstName is required")]
+        [Required(ErrorMessage = "CompanyName is required")]
         [Column(TypeName = "varchar(50)")]
-        public string FirstName { get; set; }
+        public string CompanyName { get; set; }
 
-        [Required(ErrorMessage = "LastName is required")]
+        [Required(ErrorMessage = "ContactName is required")]
         [Column(TypeName = "varchar(50)")]
-        public string LastName { get; set; }
+        public string ContactName { get; set; }
 
-        [Required(ErrorMessage = "Title is required")]
+        [Required(ErrorMessage = "ContactTitle is required")]
         [Column(TypeName = "varchar(50)")]
-        public string Title { get; set; }
-
-        [Required(ErrorMessage = "TitleOfCourtesy is required")]
-        [Column(TypeName = "varchar(50)")]
-        public string TitleOfCourtesy { get; set; }
-
-        [Required(ErrorMessage = "BirthDate is required")] 
-        public DateTime BirthDate { get; set; }
-
-        [Required(ErrorMessage = "HireDate is required")]
-        public DateTime HireDate { get; set; }
+        public string ContactTitle { get; set; }
 
         [Required(ErrorMessage = "Address is required")]
         [Column(TypeName = "varchar(50)")]
@@ -56,12 +46,5 @@ namespace Antra.CRMApp.Core.Entity
         [Column(TypeName = "varchar(50)")]
         public string Phone { get; set; }
 
-        [Required(ErrorMessage = "ReportsTo is required")]
-        [Column(TypeName = "varchar(20)")]
-        public string ReportsTo { get; set; }
-
-        [Required(ErrorMessage = "PhotoPath is required")]
-        [Column(TypeName = "varchar(100)")]
-        public string PhotoPath { get; set; }
     }
 }
