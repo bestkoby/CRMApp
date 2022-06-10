@@ -1,0 +1,31 @@
+﻿@model IEnumerable<CategoryResponseModel>
+<a asp-action="Create" asp-controller="Category" class="btn bg-success" >Add Category</a>
+<table class="table table-striped">
+  <thead>
+      <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Description</th> 
+          <th>Option</th>
+   
+      </tr>
+  </thead>
+  <tbody>
+      @foreach(var c in Model)
+        {
+            <tr>
+                <td>@c.Id</td>
+                <td>@c.Name</td>
+                <td>@c.Description</td> 
+                <td>
+               <span>
+               <a asp-controller="Category" asp-action="Edit" asp-route-id="@c.Id" >Edit</a>
+               </span>
+               <span>
+               <a asp-controller="Category" asp-action="Delete" asp-route-id="@c.Id" >Delete</a>
+               </span>
+               </td>
+            </tr>
+        }
+    </tbody>
+</table>

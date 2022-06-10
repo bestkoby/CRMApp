@@ -1,37 +1,43 @@
-﻿<!--index.cshtml is a razor view...
-    razor is a viewengine, it will convert the C# code to 
-    the script code which a browser can understand
--->
-@model IEnumerable<Product>
-<h1>Product index</h1>
-<table class="table">
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Color</th>
-            <th>Price</th>
-            <th>Option</th>
-        </tr>
-    </thead>
-    <tbody>
-        @{
-            foreach(var p in Model)
-            {
-               <tr>
-               <td>@p.Id</td>
-               <td>@p.Name</td>
-               <td>@p.Color</td>
-               <td>@p.Price</td>
-               <td>
+﻿@model IEnumerable<ProductResponseModel>
+<a asp-action="Create" asp-controller="Product" class="btn bg-success" >Add Product</a>
+<table class="table table-striped">
+  <thead>
+      <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>SupplierId</th>
+          <th>QuantityPerUnit</th>
+          <th>UnitPrice</th>
+          <th>UnitInStock</th>
+          <th>UnitOnOrder</th>
+          <th>ReorderLevel</th>
+          <th>Discontinued</th> 
+          <th>Option</th>
+   
+      </tr>
+  </thead>
+  <tbody>
+      @foreach(var p in Model)
+        {
+            <tr>
+                <td>@p.Id</td>
+                <td>@p.Name</td>
+                <td>@p.SupplierId</td>
+                <td>@p.QuantityPerUnit</td>
+                <td>@p.UnitPrice</td>
+                <td>@p.UnitInStock</td>
+                <td>@p.UnitOnOrder</td>
+                <td>@p.ReorderLevel</td>
+                <td>@p.Discontinued</td> 
+                <td>
                <span>
                <a asp-controller="Product" asp-action="Edit" asp-route-id="@p.Id" >Edit</a>
                </span>
+               <span>
+               <a asp-controller="Product" asp-action="Delete" asp-route-id="@p.Id" >Delete</a>
+               </span>
                </td>
-               </tr> 
-
-            }
+            </tr>
         }
     </tbody>
 </table>
-
