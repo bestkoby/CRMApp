@@ -34,5 +34,32 @@ namespace Antra.CRMApp.WebMVC.Controllers
 
             return View(model);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            ViewBag.IsEdit = false;
+            var empModel = await _shipperServiceAsync.GetShipperForEditAsync(id);
+            return View(empModel);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Edit(ShipperRequestModel model)
+        {
+            ViewBag.IsEdit = false;
+            if (ModelState.IsValid)
+            {
+                await _shipperServiceAsync.UpdateShipperAsync(model);
+                ViewBag.IsEdit = true;
+            }
+
+            return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await _shipperServiceAsync.DeleteShipperAsync(id);
+            return RedirectToAction("Index");
+        }
     }
 }

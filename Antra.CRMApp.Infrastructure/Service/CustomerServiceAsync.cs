@@ -22,6 +22,7 @@ namespace Antra.CRMApp.Infrastructure.Service
         {
             Customer c  = new Customer();
             c.Id = customer.Id;
+            c.Title = customer.Title;
             c.Name = customer.Name;
             c.Address = customer.Address;
             c.Phone = customer.Phone;
@@ -55,6 +56,7 @@ namespace Antra.CRMApp.Infrastructure.Service
                     model.Name = item.Name;
                     model.Country = item.Country;
                     model.PostalCode = item.PostalCode;
+                    model.RegionId = item.RegionId;
                     result.Add(model);
                 }
                 return result;
@@ -76,6 +78,7 @@ namespace Antra.CRMApp.Infrastructure.Service
                 model.Name = item.Name;
                 model.Country = item.Country;
                 model.PostalCode = item.PostalCode;
+                model.RegionId = item.RegionId;
                 return model;
             }
             return null;
@@ -95,6 +98,7 @@ namespace Antra.CRMApp.Infrastructure.Service
                 model.Name = item.Name;
                 model.Country = item.Country;
                 model.PostalCode = item.PostalCode;
+                model.RegionId = item.RegionId;
                 return model;
             }
             return null;
@@ -111,6 +115,7 @@ namespace Antra.CRMApp.Infrastructure.Service
             model.Name = item.Name;
             model.Country = item.Country;
             model.PostalCode = item.PostalCode;
+            model.RegionId = item.RegionId;
             return await customerRepositoryAsync.UpdateAsync(model);
         }
     }

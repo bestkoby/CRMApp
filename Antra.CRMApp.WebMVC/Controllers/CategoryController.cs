@@ -22,6 +22,7 @@ namespace Antra.CRMApp.WebMVC.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public async Task<IActionResult> Create(CategoryRequestModel model)
         {
@@ -32,6 +33,33 @@ namespace Antra.CRMApp.WebMVC.Controllers
             }
 
             return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            ViewBag.IsEdit = false;
+            var empModel = await categoryServiceAsync.GetCategoryForEditAsync(id);
+            return View(empModel);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Edit(CategoryRequestModel model)
+        {
+            ViewBag.IsEdit = false;
+            if (ModelState.IsValid)
+            {
+                await categoryServiceAsync.UpdateCategoryAsync(model);
+                ViewBag.IsEdit = true;
+            }
+
+            return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await categoryServiceAsync.DeleteCategoryAsync(id);
+            return RedirectToAction("Index");
         }
     }
 }

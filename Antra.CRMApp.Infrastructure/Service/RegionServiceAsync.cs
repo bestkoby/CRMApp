@@ -20,13 +20,14 @@ namespace Antra.CRMApp.Infrastructure.Service
         public async Task<int> AddRegionAsync(RegionModel model)
         {
             Region region = new Region();
+            region.Id = model.Id;
             region.Name = model.Name;
             return await regionRepositoryAsync.InsertAsync(region);
         }
 
-        public Task<int> DeleteRegionAsync(int id)
+        public async Task<int> DeleteRegionAsync(int id)
         {
-            throw new NotImplementedException();
+            return await regionRepositoryAsync.DeleteAsync(id);
         }
 
         public async Task<IEnumerable<RegionModel>> GetAllAsync()
@@ -47,19 +48,38 @@ namespace Antra.CRMApp.Infrastructure.Service
             return null;
         }
 
-        public Task<RegionModel> GetByIdAsync(int id)
+        public async Task<RegionModel> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var item = await regionRepositoryAsync.GetByIdAsync(id);
+            if (item != null)
+            {
+                RegionModel model = new RegionModel();
+                model.Name = item.Name;
+                model.Id = item.Id;
+                return model;
+            }
+            return null;
         }
 
-        public Task<RegionModel> GetRegionForEditAsync(int id)
+        public async Task<RegionModel> GetRegionForEditAsync(int id)
         {
-            throw new NotImplementedException();
+            var item = await regionRepositoryAsync.GetByIdAsync(id);
+            if (item != null)
+            {
+                RegionModel model = new RegionModel();
+                model.Name = item.Name;
+                model.Id = item.Id;
+                return model;
+            }
+            return null;
         }
 
-        public Task<int> UpdateRegionAsync(RegionModel employee)
+        public async Task<int> UpdateRegionAsync(RegionModel item)
         {
-            throw new NotImplementedException();
+            Region model = new Region();
+            model.Name = item.Name;
+            model.Id = item.Id;
+            return await regionRepositoryAsync.UpdateAsync(model);
         }
     }
 }

@@ -8,14 +8,18 @@ namespace Antra.CRMApp.WebMVC.Controllers
     public class CustomerController : Controller
     {
         private readonly ICustomerServiceAsync customerServiceAsync;
+        private readonly IRegionServiceAsync regionServiceAsync;
    
-        public CustomerController(ICustomerServiceAsync  c)
+        public CustomerController(ICustomerServiceAsync  c, IRegionServiceAsync r)
         {
-            customerServiceAsync = c; 
+            customerServiceAsync = c;
+            regionServiceAsync = r;
         }
         public async Task<IActionResult> Index()
         {
             var collection = await customerServiceAsync.GetAllAsync();
+            var region_collection = await regionServiceAsync.GetAllAsync();
+            ViewBag.Regions = new SelectList(region_collection, "Id", "Name"); 
             if (collection != null)
                 return View(collection);
 
@@ -25,7 +29,9 @@ namespace Antra.CRMApp.WebMVC.Controllers
 
         [HttpGet]
         public async Task<IActionResult> Create()
-        { 
+        {
+            var region_collection = await regionServiceAsync.GetAllAsync();
+            ViewBag.Regions = new SelectList(region_collection, "Id", "Name");
             return View();
         }
 
@@ -34,9 +40,11 @@ namespace Antra.CRMApp.WebMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                await customerServiceAsync.AddCustomerAsync(model);
+                await customerServiceAsync.AddCustomerAsync(model); 
                 return RedirectToAction("Index");
-            } 
+            }
+            var region_collection = await regionServiceAsync.GetAllAsync();
+            ViewBag.Regions = new SelectList(region_collection, "Id", "Name");
             return View(model);
         }
 
@@ -45,7 +53,9 @@ namespace Antra.CRMApp.WebMVC.Controllers
         public async Task<IActionResult> Edit(int id)
         {
             ViewBag.IsEdit = false;
-            var empModel = await customerServiceAsync.GetCustomerForEditAsync(id); 
+            var empModel = await customerServiceAsync.GetCustomerForEditAsync(id);
+            var region_collection = await regionServiceAsync.GetAllAsync();
+            ViewBag.Regions = new SelectList(region_collection, "Id", "Name");
             return View(empModel);
         }
         [HttpPost]
@@ -55,6 +65,8 @@ namespace Antra.CRMApp.WebMVC.Controllers
             if (ModelState.IsValid)
             {
                 await customerServiceAsync.UpdateCustomerAsync(model);
+                var region_collection = await regionServiceAsync.GetAllAsync();
+                ViewBag.Regions = new SelectList(region_collection, "Id", "Name");
                 ViewBag.IsEdit = true;
 
             }

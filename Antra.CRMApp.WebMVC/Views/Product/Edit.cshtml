@@ -13,47 +13,73 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
 }
-
-
+ 
 <form method="post"  >
-    <div class="my-5">
-        <input type="text" asp-for="Name"  class="form-control" placeholder="Enter Name"/>
-    <span asp-validation-for="Name" class="text-danger"></span>
-    </div>
-    <div class="my-5">
-        <input type="text" asp-for="SupplierId" class="form-control" placeholder="Enter SupplierId"/>
-    <span asp-validation-for="SupplierId" class="text-danger"></span>
-   
-    </div>
-    <div class="my-5">
-        <input type="text" asp-for="CategoryId" class="form-control" placeholder="Enter CategoryId"/>
-    <span asp-validation-for="CategoryId" class="text-danger"></span>
-   
-    </div>
-    <div class="my-5">
-        <input type="text" asp-for="QuantityPerUnit" class="form-control" placeholder="Enter QuantityPerUnit"/>
-    <span asp-validation-for="QuantityPerUnit" class="text-danger"></span>
-   
-    </div>  
-    <div class="my-5">
-        <input type="text" asp-for="UnitPrice" class="form-control" placeholder="Enter UnitPrice"/>
- <span asp-validation-for="UnitPrice" class="text-danger"></span>
-   
-    </div>
-    <div class="my-5">
-        <input type="text" asp-for="UnitInStock" class="form-control" placeholder="Enter UnitInStock"/>
-    <span asp-validation-for="UnitInStock" class="text-danger"></span>
-   
-    </div>
-     <div class="my-5">
-        <input type="text" asp-for="UnitOnOrder" class="form-control" placeholder="Enter UnitOnOrder"/>
-    <span asp-validation-for="UnitOnOrder" class="text-danger"></span>
-   
-    </div>
-     <div class="my-5">
-        <input type="text" asp-for="ReorderLevel" class="form-control" placeholder="Enter ReorderLevel"/>
-    <span asp-validation-for="ReorderLevel" class="text-danger"></span>
-   
-    </div> 
-    <input type="submit" class="btn-primary" value="Create" />
+    <div class="row">
+            <div class="col">
+                <div class="my-4">
+                    <label asp-for="Name"></label>
+                    <input type="text" asp-for="Name"  class="form-control" placeholder="Enter Name"/>
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col">
+                 <div class="my-4">
+                    <label asp-for="SupplierId"></label>
+                    <select asp-for="SupplierId" class="form-control" asp-items="ViewBag.Supplier" >
+                        <option value="">Select a Supplier</option>   
+                    </select> 
+                    <span asp-validation-for="SupplierId" class="text-danger"></span> 
+                </div>
+            </div >
+            <div class="col">
+                <div class="my-4">
+                    <label asp-for="CategoryId"></label>
+                     <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.Category" >
+                        <option value="">Select a Category</option>   
+                    </select>  
+                    <span asp-validation-for="CategoryId" class="text-danger"></span> 
+                </div>
+            </div> 
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="my-4">
+                <label asp-for="QuantityPerUnit"></label>
+                <input type="text" asp-for="QuantityPerUnit" class="form-control" placeholder="Enter QuantityPerUnit"/>
+                <span asp-validation-for="QuantityPerUnit" class="text-danger"></span> 
+            </div>  
+            </div>
+            <div class="col">
+                 <div class="my-4">
+                    <label asp-for="UnitPrice"></label>
+                    <input type="text" asp-for="UnitPrice" class="form-control" placeholder="Enter UnitPrice"/>
+                    <span asp-validation-for="UnitPrice" class="text-danger"></span> 
+                </div>
+            </div >
+            <div class="col">
+                <div class="my-4">
+                    <label asp-for="UnitInStock"></label>
+                    <input type="text" asp-for="UnitInStock" class="form-control" placeholder="Enter UnitInStock"/>
+                    <span asp-validation-for="UnitInStock" class="text-danger"></span> 
+                </div>
+            </div>  
+         </div>
+         <div class="row">
+             <div class="col">
+                <div class="my-4">
+                   <label asp-for="UnitOnOrder"></label>
+                    <input type="text" asp-for="UnitOnOrder" class="form-control" placeholder="Enter UnitOnOrder"/>
+                    <span asp-validation-for="UnitOnOrder" class="text-danger"></span> 
+                </div>
+            </div>  
+            <div class="col">
+                <div class="my-4">
+                    <label asp-for="ReorderLevel"></label>
+                    <input type="text" asp-for="ReorderLevel" class="form-control" placeholder="Enter ReorderLevel"/>
+                    <span asp-validation-for="ReorderLevel" class="text-danger"></span> 
+                </div> 
+            </div>   
+        </div> 
+    <input type="submit" class="btn-primary" value="Edit" />
 </form>

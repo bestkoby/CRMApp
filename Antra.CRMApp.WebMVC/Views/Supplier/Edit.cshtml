@@ -1,0 +1,75 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@ 
+@model SupplierModel
+
+   @if (ViewBag.IsEdit==true)
+{
+         <div class="container">
+            <di class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>SupplierUpdated Successfully. Go to <a asp-action="Index" asp-controller="Supplier" >Index</a> </strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+}
+
+ 
+<form method="post"  >
+    <h1 class="display-6">Edir New Product</h1>
+    <hr/>
+    <div class="container">
+    <div class = "row">
+        <div class = "col">
+            <div class="my-5">
+                <label asp-for="CompanyName"></label>
+                <input type="text" asp-for="CompanyName"  class="form-control" placeholder="Enter CompanyName"/>
+                <span asp-validation-for="CompanyName" class="text-danger"></span>
+            </div>
+            <div class="my-5">
+                <label asp-for="ContactName" ></label>
+                <input type="text" asp-for="ContactName" class="form-control" placeholder="Enter ContactName"/>
+                <span asp-validation-for="ContactName" class="text-danger"></span> 
+            </div
+            <div class="my-5"><label asp-for="ContactTitle"></label>
+                <input type="text" asp-for="ContactTitle " class="form-control" placeholder="Enter ContactTitle"/>
+                <span asp-validation-for="ContactTitle" class="text-danger"></span> 
+            </div>
+        </div>
+    </div>
+    <div class = "row">
+        <div class = "col">
+       <div class="my-5">
+            <label asp-for="Address"></label>
+            <input type="text" asp-for="Address" class="form-control" placeholder="Enter Address"/>
+            <span asp-validation-for="Address" class="text-danger"></span>
+        </div>
+        <div class="my-5">
+            <label asp-for="City"></label>
+            <input type="text" asp-for="City" class="form-control" placeholder="Enter City"/>
+            <span asp-validation-for="City" class="text-danger"></span>
+        </div>  
+        <div class="my-5">
+            <label asp-for="RegionId"></label>
+             <select asp-for="RegionId" class="form-control" asp-items="ViewBag.Regions" >
+                        <option value="">Select a Region</option>   
+                    </select>  
+            <span asp-validation-for="RegionId" class="text-danger"></span> 
+        </div> 
+        </div> 
+    </div>
+    </div> class = "row">
+        <div class = "col">
+            <div class="my-5">
+                <label asp-for="Country"></label>
+                <input type="text" asp-for="Country" class="form-control" placeholder="Enter Country"/>
+                <span asp-validation-for="Country" class="text-danger"></span> 
+            </div>
+             <div class="my-5">
+                 <label asp-for="Phone"></label>
+                <input type="text" asp-for="Phone" class="form-control" placeholder="Enter Phone"/>
+                 <span asp-validation-for="Phone" class="text-danger"></span> 
+            </div> 
+        </div>
+      </div>
+    <input type="submit" class="btn-primary" value="Edit" />
+    </div>
+</form>

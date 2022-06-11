@@ -1,0 +1,44 @@
+﻿@model IEnumerable<SupplierModel>
+<a asp-action="Create" asp-controller="Supplier" class="btn bg-success" >Add Supplier</a>
+<table class="table table-striped">
+  <thead>
+      <tr>
+          <th>Id</th>
+          <th>CompanName</th>
+          <th>ContactName</th>  
+          <th>ContactTitle</th> 
+          <th>Address</th> 
+          <th>City</th> 
+          <th>RegionId</th> 
+          <th>PostalCode</th> 
+          <th>Country</th>       
+          <th>Phone</th> 
+          <th>Option</th> 
+      </tr>
+  </thead>
+  <tbody>
+      @foreach(var s in Model)
+        {
+            <tr>
+                <td>@s.Id</td>
+                <td>@s.CompanyName</td>
+                <td>@s.ContactName</td> 
+                <td>@s.ContactTitle</td> 
+                <td>@s.Address</td> 
+                <td>@s.City</td> 
+                <td>@s.RegionId</td> 
+                <td>@s.PostalCode</td> 
+                <td>@s.Country</td> 
+                <td>@s.Phone</td> 
+                <td>
+               <span>
+               <a asp-controller="Supplier" asp-action="Edit" asp-route-id="@s.Id" >Edit</a>
+               </span>
+               <span>
+               <a asp-controller="Supplier" asp-action="Delete" asp-route-id="@s.Id" >Delete</a>
+               </span>
+               </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -32,7 +32,7 @@ namespace Antra.CRMApp.WebMVC.Controllers
         {
             var collections = await supplierServiceAsync.GetAllAsync();
             var collectionc = await categoryServiceAsync.GetAllAsync();
-            ViewBag.Supplier = new SelectList(collections, "Id", "Name");
+            ViewBag.Supplier = new SelectList(collections, "Id", "CompanyName");
             ViewBag.Category = new SelectList(collectionc, "Id", "Name");
             return View();
         }
@@ -47,7 +47,7 @@ namespace Antra.CRMApp.WebMVC.Controllers
             }
             var collections = await supplierServiceAsync.GetAllAsync();
             var collectionc = await categoryServiceAsync.GetAllAsync();
-            ViewBag.Supplier = new SelectList(collections, "Id", "Name");
+            ViewBag.Supplier = new SelectList(collections, "Id", "CompanyName");
             ViewBag.Category = new SelectList(collectionc, "Id", "Name");
             return View(model);
         }
@@ -60,7 +60,7 @@ namespace Antra.CRMApp.WebMVC.Controllers
             var proModel = await productServiceAsync.GetProductForEditAsync(id); 
             var collections = await supplierServiceAsync.GetAllAsync();
             var collectionc = await categoryServiceAsync.GetAllAsync();
-            ViewBag.Supplier = new SelectList(collections, "Id", "Name");
+            ViewBag.Supplier = new SelectList(collections, "Id", "CompanyName");
             ViewBag.Category = new SelectList(collectionc, "Id", "Name");
             return View(proModel);
         }
@@ -70,7 +70,7 @@ namespace Antra.CRMApp.WebMVC.Controllers
             ViewBag.IsEdit = false;
             var collections = await supplierServiceAsync.GetAllAsync();
             var collectionc = await categoryServiceAsync.GetAllAsync();
-            ViewBag.Supplier = new SelectList(collections, "Id", "Name");
+            ViewBag.Supplier = new SelectList(collections, "Id", "CompanyName");
             ViewBag.Category = new SelectList(collectionc, "Id", "Name");
             if (ModelState.IsValid)
             {

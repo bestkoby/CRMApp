@@ -1,0 +1,56 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model CustomerRequestModel
+
+   @if (ViewBag.IsEdit==true)
+{
+         <div class="container">
+            <di class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Customer Updated Successfully. Go to <a asp-action="Index" asp-controller="Customer" >Index</a> </strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+}
+
+ 
+<form method="post"  >
+    <div class="my-5">
+        <input type="text" asp-for="Name"  class="form-control" placeholder="Enter Name"/>
+    <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="my-5">
+        <input type="text" asp-for="Title" class="form-control" placeholder="Enter Title"/>
+    <span asp-validation-for="Title" class="text-danger"></span>
+   
+    </div>
+    <div class="my-5">
+        <input type="text" asp-for="Address" class="form-control" placeholder="Enter Address"/>
+    <span asp-validation-for="Address" class="text-danger"></span>
+   
+    </div>
+    <div class="my-5">
+        <input type="text" asp-for="City" class="form-control" placeholder="Enter City"/>
+    <span asp-validation-for="City" class="text-danger"></span>
+   
+    </div>  
+    <div class="my-5">
+        <select asp-for="RegionId" class="form-control" asp-items="ViewBag.Regions" >
+                <option value="">Select a region</option>   
+                </select>
+ <span asp-validation-for="PostalCode" class="text-danger"></span>
+   
+    </div>
+    <div class="my-5">
+        <input type="text" asp-for="Country" class="form-control" placeholder="Enter Country"/>
+    <span asp-validation-for="Country" class="text-danger"></span>
+   
+    </div>
+     <div class="my-5">
+        <input type="text" asp-for="Phone" class="form-control" placeholder="Enter Phone"/>
+    <span asp-validation-for="Phone" class="text-danger"></span>
+   
+    </div> 
+    <input type="submit" class="btn-primary" value="Edit" />
+</form>

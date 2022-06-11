@@ -5,14 +5,24 @@
       <tr>
           <th>Id</th>
           <th>Name</th>
+          <th>Option</th>
       </tr>
   </thead>
   <tbody>
-      @foreach(var m in Model)
+      @foreach(var r in Model)
         {
             <tr>
-                <td>@m.Id</td>
-                <td>@m.Name</td>
+                <td>@r.Id</td>
+                <td>@r.Name</td>
+                <td>
+                   <span>
+                   <a asp-controller="Region" asp-action="Edit" asp-route-id="@r.Id" >Edit</a>
+                   </span>
+                   <span>
+                   <a asp-controller="Region" asp-action="Delete" asp-route-id="@r.Id" >Delete</a>
+                   </span>
+                </td>
+                
             </tr>
         }
     </tbody>
