@@ -43,8 +43,13 @@
                 </div> 
             </div> 
         </div>
-        </div> class = "row">
+        <div class = "row">
             <div class = "col">
+                <div class="my-5">
+                    <label asp-for="PostalCode"></label>
+                    <input type="text" asp-for="PostalCode" class="form-control" placeholder="Enter PostalCode"/>
+                    <span asp-validation-for="PostalCode" class="text-danger"></span> 
+                </div>
                 <div class="my-5">
                     <label asp-for="Country"></label>
                     <input type="text" asp-for="Country" class="form-control" placeholder="Enter Country"/>
