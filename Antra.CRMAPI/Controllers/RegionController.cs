@@ -15,8 +15,7 @@ namespace Antra.CRMAPI.Controllers
 
         [HttpGet]
         public async Task<IActionResult> GET()
-        {
-            throw new NotImplementedException("NotImplementedException ....");
+        { 
             var res = await _regionService.GetAllAsync();
             if (res != null)
                 return Ok(res);

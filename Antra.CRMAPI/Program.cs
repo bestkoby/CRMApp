@@ -8,11 +8,32 @@ using Antra.CRMApp.Infrastructure.Service;
 using Microsoft.AspNetCore.Diagnostics;
 using Antra.CRMAPI.Middleware;
 using Serilog;
-using Serilog.AspNetCore; 
+using Serilog.AspNetCore;
+using Antra.CRMApp.Core.Entity;
+using Microsoft.AspNetCore.Identity;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Host.UseSerilog();
 
+
+// AllowCors origin
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins"; 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+                      policy =>
+                      {
+                          policy.WithOrigins("http://localhost:4200");
+                      });
+}); 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(builder =>
+    {
+        builder.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod();
+    });
+}); 
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -21,7 +42,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddLogging();
 builder.Services.AddSqlServer<CrmDbContext>(builder.Configuration.GetConnectionString("OnlineCRM"));
-
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<CrmDbContext>().AddDefaultTokenProviders(); 
 
 // Repository
 builder.Services.AddScoped<IEmployeeRepositoryAsync, EmployeeRepositoryAsync>();
@@ -31,7 +52,7 @@ builder.Services.AddScoped<ICategoryRepositoryAsync, CategoryRepositoryAsync>();
 builder.Services.AddScoped<ICustomerRepositoryAsync, CustomerRepositoryAsync>();
 builder.Services.AddScoped<IShipperRepositoryAsync, ShipperRepositoryAsync>();
 builder.Services.AddScoped<ISupplierRepositoryAsync, SupplierRepositoryAsync>();
-
+builder.Services.AddScoped<IAccountRepositoryAsync, AccountRepositoryAsync>();
 
 
 // Services
@@ -42,6 +63,7 @@ builder.Services.AddScoped<ICategoryServiceAsync, CategoryServiceAsync>();
 builder.Services.AddScoped<ICustomerServiceAsync, CustomerServiceAsync>();
 builder.Services.AddScoped<IShipperServiceAsync, ShipperServiceAsync>();
 builder.Services.AddScoped<ISupplierServiceAsync, SupplierServiceAsync>();
+builder.Services.AddScoped<IAccountServiceAsync, AccountServiceAsync>();
 
 var app = builder.Build();
 
@@ -70,6 +92,9 @@ app.UseSerilogRequestLogging();
 app.UseMiddleware<GlobalExceptionMiddleware>();
 
 app.UseHttpsRedirection();
+
+// Cors
+app.UseCors( );
 
 app.UseAuthorization();
 
