@@ -51,12 +51,13 @@ namespace Antra.CRMAPI.Controllers
         }
 
         [HttpDelete]
+        [Route("{id:int}")]
         public async Task<IActionResult> DELETE(int id)
         {
             var res = await _regionService.DeleteRegionAsync(id);
             if (res > 0)
-                return Ok("Deleted");
-            return BadRequest(res);
+                return Ok(new { Message = "region deleted" });
+            return BadRequest( );
         }
     }
 }

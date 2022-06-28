@@ -51,6 +51,7 @@ namespace Antra.CRMAPI.Controllers
         }
 
         [HttpDelete]
+        [Route("{id:int}")]
         public async Task<IActionResult> DELETE(int id)
         {
             var res = await _productServiceAsync.DeleteProductAsync(id);

@@ -21,5 +21,10 @@ namespace Antra.CRMApp.Infrastructure.Service
         {
             return await _accountRepositoryAsync.SignUpAsync(model);
         }
+
+        public async Task<SignInResult> SignInAsync(LoginModel model)
+        {
+            return await _accountRepositoryAsync.SignIn(model);
+        } 
     }
 }
